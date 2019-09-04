@@ -1,25 +1,28 @@
 # eloquent
 
-Extensionst for laravel Eloquent\Model and other classes
+Extensions for Laravel Eloquent\Model and other classes
 
-* trait HasUserstamps
+* Trait **HasUserstamps** for filling userstamp fields `created_at`, `updated_at`, `deleted_at` by authorized user ID
 
 ## Installation
+
 Run:
+
 ```bash
 composer require "limanweb/eloquent-extension"
 ```
 ## Package contents
 
-* **Models**\
-  * **Concerns**\
-    * **HasUsertimestamps** - trait for userstamps filling in model
+* /**Models**
+  * /**Concerns**
+    * **HasUsertimestamps.php** - trait for userstamps filling in model
 
 ## Usage
 
 ### HasUserstamps
 
-Add into create or update table migration fields for userstamps
+Add into create or update table migration fields for userstamps  `created_at`, `updated_at` and `deleted_at`.
+For examle modify CreateUsersTable migration.
 
 ```php
 class CreateUsersTable extends Migration
@@ -28,10 +31,10 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             ...
-            // Userstamps fields
+            // add userstamps fields
             $table->bigInteger('created_by')->nullable();
             $table->bigInteger('updated_by')->nullable();
-            // if SoftDeleting used add deleted_by
+            // if SoftDeletes trait will be used in model then add deleted_by field
             // $table->bigInteger('deleted_by')->nullable();
               
         });
@@ -42,18 +45,26 @@ class CreateUsersTable extends Migration
 }
 ```
 
-Use Limanweb\EloquentExt\Models\Concerns\HasUserstamps trait in model and set public property `userstamps` into true 
+In the model you must:
 
+1. declare using of trait Limanweb\EloquentExt\Models\Concerns\HasUserstamps
+2. use HasUserstamps trait in the model
+3. enable userstamps by define public property `$userstamps` with `true` value 
 
 ```php
+...
+
+use Limanweb\EloquentExt\Models\Concerns\HasUserstamps;  // (1) declare
 
 class User extends Authenticatable
 {
     use Notifiable;
-
-    use Limanweb\EloquentExt\Models\Concerns\HasUserstamps;
+    use HasUserstamps;          // (2) use trait in the model
     
-    public $userstamps = true;
+    public $userstamps = true;  // (3) enable userstamps
+
+    ...
+}
 
 ```
 
