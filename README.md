@@ -16,6 +16,7 @@ composer require "limanweb/eloquent-extension"
 * /**Models**
   * /**Concerns**
     * **HasUsertimestamps.php** - trait for userstamps filling in model
+    * **HasCompositePrimaryKey.php - trait for using in model composite primary key
 
 ## Usage
 
@@ -70,7 +71,49 @@ class User extends Authenticatable
 
 The `created_by` and `updated_by` fields in your model will now be populated in the same way as the timestamp fields when you create and update the model. If your model uses SoftDeletes traite, will also be processed field, `deleted_by`.
 
+### HasCompositePrimaryKey
+
+In the model you must:
+
+1. declare using of trait Limanweb\EloquentExt\Models\Concerns\HasCompositePrimaryKey
+2. use HasCompositePrimaryKey trait in the model
+3. set $incrementing model property as `false`
+4. set $primaryKey model property as array complex primary key part names  
+
+```php
+...
+
+use Limanweb\EloquentExt\Models\Concerns\HasCompositePrimaryKey;  // (1) declare trait
+
+class Example extends Model
+{
+
+    use HasCompositePrimaryKey;         // (2) use trait in the model
+    
+    public $incrementing = false;			// (3)
+    
+    protected $primaryKey = ['part1', 'part2']; // (4)
+
+    ...
+}
+
+```
+
+Example of using
 
 
+```php
+>>> $m = Example::find([65, 275]);
+=> App\Example {#3837
+     part1: 65,
+     part2: 275,
+     message: "record 65:275",
+   }
 
+>>> $m->getKey();
+=> [
+     65,
+     275,
+   ]
 
+```

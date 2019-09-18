@@ -4,3 +4,7 @@
 
 - Models\Concerns\HasUserstamps done
 
+## 1.1.0 (2019-09-18)
+
+- Models\Concerns\HasCompositePrimaryKey added
+
