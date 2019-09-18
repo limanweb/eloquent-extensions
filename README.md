@@ -16,7 +16,7 @@ composer require "limanweb/eloquent-extension"
 * /**Models**
   * /**Concerns**
     * **HasUsertimestamps.php** - trait for userstamps filling in model
-    * **HasCompositePrimaryKey.php - trait for using in model composite primary key
+    * **HasCompositePrimaryKey.php** - trait for using in model composite primary key
 
 ## Usage
 
