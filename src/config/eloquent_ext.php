@@ -39,6 +39,13 @@ return [
                 'handler' => SetFilterOperationHandler::class,
             ],
         ],
+        'opertion_sets' => [
+            'string' => ['eq', 'not-eq', 'in', 'not-in', 'like', 'not-like', 'has-string', 'not-has-string'],
+            'number' => ['eq', 'not-eq', 'gt', 'ge', 'lt', 'le', 'in', 'not-in', 'null', 'not-null'],
+            'identifier' => ['eq', 'not-eq'],
+            'date' => ['eq', 'not-eq', 'gt', 'ge', 'lt', 'le', 'in', 'not-in', 'null', 'not-null'],
+            'boolean' => ['eq', 'not-eq', 'null', 'not-null']
+        ],
 //         'casts' => [
 //             'string' => [
 //                 'int' => 'castIntVal',
@@ -50,5 +57,18 @@ return [
 //                 'boolean' => 'castBoolVal',
 //             ],                 
 //         ]
+        'cast-aliases' => [
+            'real' => 'float',
+            'float' => 'float',
+            'double' => 'float',
+            'int' => 'int',
+            'integer' => 'int',
+        ],
+        'validation' => [
+            'int' => ['integer'],
+            'float' => ['numeric'],
+            'string' => ['string'],
+            'date' => ['date'],
+        ],
     ], 
 ];
