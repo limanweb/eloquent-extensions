@@ -39,7 +39,7 @@ return [
                 'handler' => SetFilterOperationHandler::class,
             ],
         ],
-        'opertion_sets' => [
+        'operation_sets' => [
             'string' => ['eq', 'not-eq', 'in', 'not-in', 'like', 'not-like', 'has-string', 'not-has-string'],
             'number' => ['eq', 'not-eq', 'gt', 'ge', 'lt', 'le', 'in', 'not-in', 'null', 'not-null'],
             'identifier' => ['eq', 'not-eq'],

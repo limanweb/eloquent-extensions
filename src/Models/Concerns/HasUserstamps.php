@@ -26,11 +26,10 @@ trait HasUserstamps
     }
     
     /**
-     * Overriding boot()
+     * Trait booting
      */
-    public static function boot()
+    public static function bootHasUserstamps()
     {
-        
         static::creating(function (\Illuminate\Database\Eloquent\Model $model)
         {
             if ($model->usesUserstamps() && \Auth::check()) {
@@ -58,8 +57,6 @@ trait HasUserstamps
                 }
             });
         }
-        
-        parent::boot();
     }
     
     /**
