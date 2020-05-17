@@ -1,4 +1,4 @@
-# eloquent
+# limanweb/eloquent-extensions
 
 Extensions for Laravel Eloquent\Model and other classes
 
@@ -17,6 +17,7 @@ composer require "limanweb/eloquent-extension"
   * /**Concerns**
     * **HasUsertimestamps.php** - trait for userstamps filling in model
     * **HasCompositePrimaryKey.php** - trait for using in model composite primary key
+    * **HasBuilderConfigurator** - draft of trait to build queries with request params
 
 ## Usage
 
